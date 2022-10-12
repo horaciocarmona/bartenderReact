@@ -1,14 +1,26 @@
 import CategoryButton from "./CategoryButton/CategoryButton"
-import CartWidget from"./CartWidget/CartWidget"
 import "./NavBar.scss"
+import CartWidget from './CartWidget/CartWidget';
+
 function NavBar(){
     return (
         <div>
-            NavBar
-            <CategoryButton/>
-            <CategoryButton/>
-            <CategoryButton/>
-            <CartWidget/>
+            <CategoryButton
+                nombre="BarTender HC"
+            />
+            <CategoryButton
+                nombre="Bebidas"
+            />
+            <CategoryButton
+                nombre="Accesorios"
+            />
+            <CategoryButton
+                nombre="Cocteles"
+            />
+            <CartWidget
+                  nombre=""
+            />
+
         </div>
     )
 }

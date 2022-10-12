@@ -1,9 +1,14 @@
+import "./CartWidget.scss"
+import ItemCart from "./ItemCart"; 
 const CartWidget=()=>{
-    return (
-        <div>
-            <img src="./img/carrito.png" width="40" height="40" alt="imagen carrito"/>
+    return(
+        <div className="itemCart">
+            <ItemCart
+                imagen="https://i.ibb.co/gwzNGhN/carrito-de-compras.png"
+            />
         </div>
     )
 }
+
 
 export default CartWidget;

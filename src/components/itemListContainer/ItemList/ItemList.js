@@ -34,6 +34,7 @@ const ItemList=()=>{
                            nombre={producto.nombre}
                            imagen={producto.imagen}
                            precio={producto.precio}
+                           stockProducto={producto.stockProducto}
                            numberCount={numberCount}
 
                     />
@@ -47,6 +48,7 @@ const ItemList=()=>{
                            nombre={producto.nombre}
                            imagen={producto.imagen}
                            precio={producto.precio}
+                           stockProducto={producto.stockProducto}
                            numberCount={numberCount}
                     />
                  ))

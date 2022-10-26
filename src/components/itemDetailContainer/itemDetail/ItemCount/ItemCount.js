@@ -2,10 +2,11 @@ import * as React from 'react';
 import Button from 'react-bootstrap/Button';
 import "./ItemCount.scss";
 
-export default function ItemCount() {
-     const [numberCount,setNumberCount]=React.useState(0);
+export default function ItemCount(props) {
+    const [numberCount,setNumberCount]=React.useState(0);
      const sumaCantidad=()=>{
-            setNumberCount(numberCount+1);
+            let limite=props.stockProducto-numberCount;
+            limite ? setNumberCount(numberCount+1):setNumberCount(numberCount);
      };   
      const restaCantidad=()=>{
         numberCount>0 ? setNumberCount(numberCount-1):setNumberCount(0);

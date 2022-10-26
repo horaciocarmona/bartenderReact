@@ -30,7 +30,9 @@
                 category:productos.category,
                 nombre:productos.descripcionProducto,
                 imagen:productos.img,
-                precio:productos.precioVentaUnitario
+                precio:productos.precioVentaUnitario,
+                stockProducto:productos.stockProducto
+
             }));
             console.log(productos);
         
@@ -39,9 +41,8 @@
         // productosApi()
         export const getProductoById=(id)=>{
             console.log(id);
-            const producto2=productos.find(element=>element.id===parseInt(id));   
-            console.log(producto2);
-            return producto2
+            const unProducto=productos.find(element=>element.id===parseInt(id));   
+            return unProducto
         }
 
         export default productosApi;

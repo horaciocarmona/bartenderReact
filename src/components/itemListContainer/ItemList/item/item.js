@@ -12,6 +12,7 @@ const Item= (props)=>{
           <p> Id: {props.id}</p>
           <p> Categoria: {props.categoria}</p>
           <p> Precio: {props.precio}</p>
+          <p> Stock:  {props.stockProducto}</p>
           </Link>
       </div>
   );

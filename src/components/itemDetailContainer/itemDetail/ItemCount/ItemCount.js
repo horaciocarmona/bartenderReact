@@ -13,7 +13,7 @@ export default function ItemCount(props) {
      }
     return (
         <div>
-            <p>
+            <p className='unidades'>
                 unidades:
             </p>
             <Button onClick={sumaCantidad} className="btn btn-info btn-sm">

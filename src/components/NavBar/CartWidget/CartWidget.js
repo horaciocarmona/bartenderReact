@@ -1,5 +1,5 @@
 import "./CartWidget.scss"
-import ItemCart from "./ItemCart"; 
+import ItemCart from "../CartWidget/ItemCart"; 
 const CartWidget=()=>{
     return(
         <div className="itemCart">

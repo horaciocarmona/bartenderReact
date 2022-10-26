@@ -1,10 +1,10 @@
-import "./ItemListContainer.scss"
+import "./ItemList.scss"
 import {useState,useEffect} from "react"
-import Cards from "../../components/home/cards/Cards"
-import productosApi from "../ApiRest/productosApi"
+import Item from "../../itemListContainer/ItemList/item/item"
+import productosApi from "../../ApiRest/productosApi"
 import {useParams} from "react-router-dom"
 
-const ItemListContainer=()=>{
+const ItemList=()=>{
     const [filter,setFilter]=useState("");
     const [listadoProductos,setListadoProductos]=useState([]);
     const {categoria}=useParams();
@@ -28,7 +28,7 @@ const ItemListContainer=()=>{
                  listadoProductos.filter((producto)=>producto.nombre.includes(filter)).filter((producto)=>producto.category===categoria).map((producto,i) => (
 
                     <>
-                    <Cards key={i}
+                    <Item key={i}
                            id={producto.id}
                            categoria={producto.category}
                            nombre={producto.nombre}
@@ -41,7 +41,7 @@ const ItemListContainer=()=>{
                  ))
                 : 
                 listadoProductos.filter((producto)=>producto.nombre.includes(filter)).map((producto,i) => (
-                    <Cards key={i}
+                    <Item key={i}
                            id={producto.id}
                            categoria={producto.category}
                            nombre={producto.nombre}
@@ -59,4 +59,4 @@ const ItemListContainer=()=>{
     )
 }
 
-export default ItemListContainer;
+export default ItemList;

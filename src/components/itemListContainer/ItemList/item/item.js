@@ -1,9 +1,8 @@
-import "./cards.scss"
+import "./item.scss"
 import {Link} from "react-router-dom" 
-import ItemCount from "../cards/ItemCount/ItemCount"
 import * as React from 'react';
 
-const Cards= (props)=>{   
+const Item= (props)=>{   
  
   return(
       <div className="cards-container">
@@ -14,12 +13,8 @@ const Cards= (props)=>{
           <p> Categoria: {props.categoria}</p>
           <p> Precio: {props.precio}</p>
           </Link>
-          <ItemCount 
-               numberCount={props.numberCount}
-           />
-
       </div>
   );
 }
 
-export default Cards;
+export default Item;

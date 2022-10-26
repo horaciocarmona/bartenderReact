@@ -1,16 +1,18 @@
-import "./products.scss"
+import "./itemDetail.scss"
 import {useParams} from "react-router-dom"
 import {useState,useEffect} from "react"
-import {getProductoById} from "../../components/ApiRest/productosApi"
+import {getProductoById} from "../../ApiRest/productosApi"
+import ItemCount from "../itemDetail/ItemCount/ItemCount"
 
-const ProductDetails=()=>{
+const ItemDetails=()=>{
     const {idProducto}=useParams();
     const [producto,setProducto]=useState({});
     useEffect(()=>{setProducto(getProductoById(idProducto))},[]);
     return(
         <div>
-            {producto.descripcionProducto}
+            <h3>{producto.descripcionProducto}</h3>
+            <ItemCount/>
         </div>
     )
 }
-export default ProductDetails;
+export default ItemDetails;

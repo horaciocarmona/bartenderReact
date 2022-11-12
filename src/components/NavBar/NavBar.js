@@ -23,10 +23,11 @@ function NavBar(){
                     nombre="Medianos"
                 />
             </Link>
-
-            <CartWidget
-                  nombre=""
-            />
+            <Link to={"/cart/carrito"} >
+                <CartWidget
+                     nombre=""
+                />
+            </Link>
 
         </div>
     )

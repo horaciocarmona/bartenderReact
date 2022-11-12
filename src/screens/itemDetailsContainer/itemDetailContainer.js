@@ -5,7 +5,8 @@ function ItemDetailContainer() {
   return (
     <div>
         {/* <NavBar/> */}
-        <ItemDetail/>
+        <ItemDetail
+        />
     </div>
   );
 }

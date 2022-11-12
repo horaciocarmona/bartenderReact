@@ -1,16 +1,17 @@
 import "./ItemList.scss"
-import {useState,useEffect} from "react"
+import {useState,useEffect, useContext} from "react"
 import Item from "../../itemListContainer/ItemList/item/item"
 import productosApi from "../../ApiRest/productosApi"
 import {useParams} from "react-router-dom"
+import {cartContext} from "../../../context/cartContext"
 
 const ItemList=()=>{
     const [filter,setFilter]=useState("");
     const [listadoProductos,setListadoProductos]=useState([]);
     const {categoria}=useParams();
     const [numberCount,setNumberCount]=useState(0);
-
     // console.log(productosApi());
+    const {cart,addToCart}=useContext(cartContext)
     const getProductos = async() => {
         const productos = await productosApi();
         setListadoProductos(productos);
@@ -23,6 +24,7 @@ const ItemList=()=>{
                 <h1>Producto</h1>
                 <input id="filter" name="filter" type="text" value={filter} onChange={(event)=>setFilter(event.target.value)}></input>
                 <div className="cards-principal">
+
                 {categoria? 
 
                  listadoProductos.filter((producto)=>producto.nombre.includes(filter)).filter((producto)=>producto.category===categoria).map((producto,i) => (
@@ -54,6 +56,7 @@ const ItemList=()=>{
                  ))
                
                 }
+
                 </div> 
             
             </div>

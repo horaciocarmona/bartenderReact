@@ -1,9 +1,8 @@
 import "./ItemList.scss"
-import {useState,useEffect, useContext} from "react"
+import {useState,useEffect} from "react"
 import Item from "../../itemListContainer/ItemList/item/item"
 import productosApi from "../../ApiRest/productosApi"
 import {useParams} from "react-router-dom"
-import {cartContext} from "../../../context/cartContext"
 
 const ItemList=()=>{
     const [filter,setFilter]=useState("");
@@ -11,7 +10,6 @@ const ItemList=()=>{
     const {categoria}=useParams();
     const [numberCount,setNumberCount]=useState(0);
     // console.log(productosApi());
-    const {cart,addToCart}=useContext(cartContext)
     const getProductos = async() => {
         const productos = await productosApi();
         setListadoProductos(productos);

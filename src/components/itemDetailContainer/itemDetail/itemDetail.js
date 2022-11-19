@@ -11,21 +11,27 @@ const ItemDetails=()=>{
         addToCart({id:obj.id,cantidad:obj.cantidad,descripcionProducto:obj.descripcionProducto,precioVentaUnitario:obj.precioVentaUnitario,stockProducto:obj.stockProducto});
     } 
     const {idProducto}=useParams();
-    const [item,setProducto]=useState({});
+    const [item,setProducto]=useState([]);
     function handleOnAdd(cantidad){
         console.log( `se agregaron unidades ${cantidad}`);
         item.cantidad=cantidad;
         subirAlCarrito(item);
     }
+    const getProducto = async() => {
+        const producto = await getProductoById(idProducto);
+        setProducto(producto);
+    }
 
-    useEffect(()=>{setProducto(getProductoById(idProducto))},[]);
+    useEffect(()=>{
+        getProducto();
+        },[]);
 
     return(
         <div className="product-container">
             <>
-            <h3>{item.descripcionProducto}</h3>
-            <img src={item.img} width="100" height="200" alt="imagen Card"/>
-            <p> Precio: {item.precioVentaUnitario}</p>
+            <h3>{item.nombre}</h3>
+            <img src={item.imagen} width="100" height="200" alt="imagen Card"/>
+            <p> Precio: {item.precio}</p>
             <p> Stock: {item.stockProducto}</p>
             <p> Id: {item.id}</p>
             </>

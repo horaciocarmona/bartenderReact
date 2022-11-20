@@ -56,9 +56,9 @@ const ItemList=()=>{
 
         <div className="Principalcontainer">
 
-                <Button onClick={()=>{sendOrder()}}>send</Button>
+                {/* <Button onClick={()=>{sendOrder()}}>send</Button>
                 <Button onClick={()=>{updateOrder()}}>update</Button>
-                <Button onClick={()=>{batchOrders()}}>batch</Button>
+                <Button onClick={()=>{batchOrders()}}>batch</Button> */}
 
                 <h1>Producto</h1>
                 <input id="filter" name="filter" type="text" value={filter} onChange={(event)=>setFilter(event.target.value)}></input>

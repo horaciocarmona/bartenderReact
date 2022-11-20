@@ -8,7 +8,7 @@ import { cartContext } from "../../../context/cartContext"
 const ItemDetails=()=>{
     const {addToCart}=useContext(cartContext);
     const subirAlCarrito=(obj)=>{
-        addToCart({id:obj.id,cantidad:obj.cantidad,descripcionProducto:obj.descripcionProducto,precioVentaUnitario:obj.precioVentaUnitario,stockProducto:obj.stockProducto});
+        addToCart({id:obj.id,cantidad:obj.cantidad,descripcionProducto:obj.nombre,precioVentaUnitario:obj.precio,stockProducto:obj.stockProducto,idDoc:obj.idDoc});
     } 
     const {idProducto}=useParams();
     const [item,setProducto]=useState([]);

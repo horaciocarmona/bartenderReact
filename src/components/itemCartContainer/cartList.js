@@ -4,6 +4,7 @@ import {useContext} from "react"
 import ItemCart from "../../components/itemCartContainer/itemCart/itemCart"
 import {cartContext} from "../../context/cartContext"
 import Button from 'react-bootstrap/Button';
+import {Link} from "react-router-dom" 
 
 const CartList=()=>{
     const {cart}=useContext(cartContext);
@@ -11,13 +12,18 @@ const CartList=()=>{
     const {totalImporteCarrito}=useContext(cartContext);
     const {removeToCart}=useContext(cartContext);
     const {emptyToCart}=useContext(cartContext);
+    const {buyToCart}=useContext(cartContext);
 
     const handleOnRemove=(producto)=>{
        removeToCart({id:producto.id,cantidad:producto.cantidad,precioVentaUnitario:producto.precio});
     }   
 
+    const handleOnBuyToCart=()=>{
+        buyToCart(cart);
+    }   
+ 
     return(
-        <div className="Principalcontainer">
+        <div className="principalContainer">
                 <h1>Carrito</h1>
                 <h2>Total unidades {totalCantidadCarrito} Importe total ${totalImporteCarrito} </h2>
                 <div className="cards-principal">
@@ -34,7 +40,13 @@ const CartList=()=>{
                  ))
                 } 
                 </div> 
-                <Button onClick={emptyToCart}>Vaciar Carrito</Button>
+                <div className="botonCierre">
+                    < Link to = {`/`}>
+                        <Button onClick={emptyToCart}>Vaciar Carrito</Button>
+                        <Button onClick={handleOnBuyToCart}>Comprar Carrito</Button>
+                    </Link>            
+
+                </div>
             </div>
        
     )

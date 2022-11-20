@@ -1,10 +1,13 @@
 import {createContext,useState} from "react";
+import {doc,getFirestore,collection, getDocs,query,where,addDoc,updateDoc,writeBatch} from "firebase/firestore"
+
 export const cartContext = createContext({
     cart:[],
     isInCart: ()=>{},
     addToCart: ()=>{},
     removeToCart: ()=>{},
     emptyToCart: ()=>{},
+    buyToCart: ()=>{},
 
     totalCantidadCarrito:0,
     totalImporteCarrito:0.00                                   
@@ -28,6 +31,8 @@ export default function CartProvider ({children}) {
           console.log("ya existe, ya existe");
           const productoExistente=getFromCart(obj.id); 
           productoExistente.cantidad+=obj.cantidad; 
+          productoExistente.stockProducto-=obj.cantidad; 
+
           setTotalCantidadCarrito(totalCantidadCarrito+obj.cantidad)  
           setTotalImporteCarrito(totalImporteCarrito+(obj.cantidad*obj.precioVentaUnitario))  
           setCart([...cart]);
@@ -36,6 +41,7 @@ export default function CartProvider ({children}) {
 
 
        console.log("nuevo producto "+obj.descripcionProducto);
+       obj.stockProducto-=obj.cantidad;
        setCart([...cart,obj]);
        console.log("ingreso al carrito con stock"+obj.stockProducto)
        setTotalCantidadCarrito(totalCantidadCarrito+obj.cantidad)  
@@ -56,10 +62,53 @@ export default function CartProvider ({children}) {
             return
         }
  
-     }
-     
-    return (
-        <cartContext.Provider value={{cart,addToCart,isInCart,emptyToCart,removeToCart,totalCantidadCarrito,totalImporteCarrito}}>
+    
+    }
+
+    const buyToCart=(cart)=>{
+        // Actualizo ordenes y Stock 
+        const order={
+            buyer: {email:"juan@hotmail.com",name:"juan",number:1,phone:"1234-5444"},
+            items:[...cart],
+            total:totalImporteCarrito
+        }
+        const db=getFirestore();
+        const ordersCollections=collection(db,"ordersCollection");    
+        console.log("order");
+
+        console.log(order);
+
+        addDoc(ordersCollections,order).then((id)=>{
+             console.log(order);
+        })    
+        console.log("cart");
+        console.log(cart);
+        stockToItems(cart);
+        emptyToCart();
+    }   
+
+     const stockToItems=(cartItems)=>{
+        console.log("cartitimens");
+        console.log(cartItems)
+
+        const db=getFirestore();
+        console.log("cartitimens");
+        console.log(cartItems)
+
+
+        cartItems.map((producto) =>{ 
+
+            const itemDoc=doc(db,"items",producto.idDoc);    
+            console.log("itemdoc");
+            console.log(itemDoc)
+    
+            updateDoc(itemDoc,{stockProducto:producto.stockProducto});
+    
+        });  
+    }   
+
+     return (
+        <cartContext.Provider value={{cart,addToCart,isInCart,emptyToCart,removeToCart,totalCantidadCarrito,totalImporteCarrito,buyToCart}}>
             {children}
         </cartContext.Provider>
     )

@@ -1,6 +1,6 @@
 import {getFirestore,collection, getDocs} from "firebase/firestore"
 
-// const productos=[{descripcionProducto:"Ron Avana Club clasico 700ml",precioVentaUnitario:6300,stockProducto:165,img:"https://i.ibb.co/Bg4h1Lh/bombaybramle.png",id:1,cantidad:0,pais:"FI",category:"grande"},
+// const productos=[{descripcionProducto:"Ron Avana Club clasico 700ml",precioVentaUnitario:6300,stockProducto:165,img:"https://i.ibb.co/dkSGG4j/ronavanaclub.png",id:1,cantidad:0,pais:"FI",category:"grande"},
 //      {descripcionProducto:"Campari 750ml",precioVentaUnitario:1800,stockProducto:3,img:"https://i.ibb.co/nLWSGVq/campari.png",id:2,cantidad:0,pais:"MX",category:"grande"},
 //      {descripcionProducto:"Gin Bombay Bramble 700",precioVentaUnitario:3800,stockProducto:150,img:"https://i.ibb.co/Bg4h1Lh/bombaybramle.png",id:3,cantidad:0,pais:"AR",category:"mediano"},
 //      {descripcionProducto:"Capel reservado clasico 700ml",precioVentaUnitario:4200,stockProducto:300,img:"https://i.ibb.co/Sn3116s/capelreservadotransparente-Copy.png" ,id:4,cantidad:0,pais:"BZ",category:"mediano"},
@@ -18,9 +18,13 @@ import {getFirestore,collection, getDocs} from "firebase/firestore"
                 let listProducts=[];    
                 snapshot.docs.map(
                     (doc)=>{ 
-                        listProducts.push(doc.data());
+                        listProducts.push({...doc.data(),idDoc:doc.id});
+
                     }
-                )
+
+                    )
+                console.log(listProducts);
+
                 return listProducts;
             })
         )
@@ -31,7 +35,8 @@ import {getFirestore,collection, getDocs} from "firebase/firestore"
                 nombre:productos.descripcionProducto,
                 imagen:productos.img,
                 precio:productos.precioVentaUnitario,
-                stockProducto:productos.stockProducto
+                stockProducto:productos.stockProducto,
+                idDoc:productos.idDoc
 
         }))
         
@@ -46,7 +51,7 @@ import {getFirestore,collection, getDocs} from "firebase/firestore"
                 let listProducts=[];    
                 snapshot.docs.map(
                     (doc)=>{ 
-                        listProducts.push(doc.data());
+                        listProducts.push({...doc.data(),idDoc:doc.id});
                     }
                 )
                 return listProducts;
@@ -59,7 +64,8 @@ import {getFirestore,collection, getDocs} from "firebase/firestore"
                 nombre:productos.descripcionProducto,
                 imagen:productos.img,
                 precio:productos.precioVentaUnitario,
-                stockProducto:productos.stockProducto
+                stockProducto:productos.stockProducto,
+                idDoc:productos.idDoc
 
         }))
 

@@ -1,16 +1,16 @@
-.pincipalContainer{
+.principalContainer{
     background-color: rgb(255, 219, 196);
     display: flex;
     flex-direction: column;
     margin: 20px;
-    margin-left: 40vw;
-    padding: 20px;
-    width: 400px;
-    height: 400px;
+    padding: 10px;
+    width: 70vw;
+    height: 80vh;
     justify-content: center;  
     align-items: center  ;
+    margin-left: 13vw;
     p {margin:0px};
     .botonCierre{
-        Link Button {margin:15px}
+        a Button {margin:15px}
     }
 }
